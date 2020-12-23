@@ -38,6 +38,7 @@
         <textarea ref="rsaDecryptedCiphertext" rows="5" cols="15"></textarea>
       </div>
     </div>
+    /*IFDEBUG
     <h3>{{hybird_title}}</h3>
     <div style="display: flex;">
       <div class="block">
@@ -57,6 +58,7 @@
         <textarea ref="hybirdDecryptedCiphertext" rows="5" cols="15"></textarea>
       </div>
     </div>
+    FIDEBUG*/
   </div>
 </template>
 
@@ -98,7 +100,7 @@
           "-----END RSA PRIVATE KEY-----\n",
         rsaEncryptor: {},
         rsaDecryptor: {},
-        hybird_title: "AES与RSA 混合加密Demo"
+        hybird_title: "xxxx AES与RSA 混合加密Demo"
       };
     },
     methods: {
@@ -161,6 +163,7 @@
         );
       },
       //-------------------------------------------------------------------------
+      /*IFDEBUG
       hybirdEncrypt() {
         const iv = this.getRandomAESKey();
         const key = this.getRandomAESKey();
@@ -197,6 +200,7 @@
         const data = encryptInfo.data;
         return this.__aesDecrypt(iv, key, data);
       }
+      FIDEBUG*/
       //-------------------------------------------------------------------------
     },
     mounted() {

@@ -4,7 +4,10 @@ const utils = require('./utils')
 const config = require('../config')
 const vueLoaderConfig = require('./vue-loader.conf')
 
-function resolve (dir) {
+console.log("Build: ENV_CONFIG=" + process.env.ENV_CONFIG);
+console.log("Build:" + process.env.ENV_CONFIG === "pro");
+
+function resolve(dir) {
   return path.join(__dirname, '..', dir)
 }
 
@@ -18,6 +21,15 @@ const createLintingRule = () => ({
     emitWarning: !config.dev.showEslintErrorsInOverlay
   }
 })
+
+const conditionalCompiler = {
+  loader: 'js-conditional-compile-loader',
+  options: {
+    isDebug: false, // optional, this expression is default
+    envTest: false, // any prop name you want, used for /* IFTRUE_evnTest ...js code... FITRUE_evnTest */
+    myFlag: false, // enabled by `npm run build --myflag`
+  }
+}
 
 module.exports = {
   context: path.resolve(__dirname, '../'),
@@ -43,13 +55,17 @@ module.exports = {
       // ...(config.dev.useEslint ? [createLintingRule()] : []),
       {
         test: /\.vue$/,
-        loader: 'vue-loader',
-        options: vueLoaderConfig
+        use: ['vue-loader', conditionalCompiler],
       },
       {
         test: /\.js$/,
-        loader: 'babel-loader',
-        include: [resolve('src'), resolve('test'), resolve('node_modules/webpack-dev-server/client')]
+        include: [resolve('src'), resolve('test')],
+        use: [
+          //step-2
+          'babel-loader?cacheDirectory',
+          //step-1
+          conditionalCompiler,
+        ],
       },
       {
         test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,

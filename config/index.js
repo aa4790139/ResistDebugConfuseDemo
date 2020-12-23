@@ -44,11 +44,14 @@ module.exports = {
   },
 
   build: {
-    // Template for index.html
-    index: path.resolve(__dirname, '../dist/index.html'),
+    // Template for index.html : 更改生成目录
+    // index: path.resolve(__dirname, '../dist/index.html'),
+    index: path.resolve(__dirname, '../dist/' + process.env.TYPE + '/index.html'),
 
-    // Paths
-    assetsRoot: path.resolve(__dirname, '../dist'),
+    // Paths : 更改生成目录
+    // assetsRoot: path.resolve(__dirname, '../dist'),
+    assetsRoot: path.resolve(__dirname, '../dist/' + process.env.TYPE),
+
     assetsSubDirectory: 'static',
     assetsPublicPath: './',
 
