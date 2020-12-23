@@ -38,8 +38,10 @@
         <textarea ref="rsaDecryptedCiphertext" rows="5" cols="15"></textarea>
       </div>
     </div>
-    /*IFDEBUG
+    /* IFTRUE_isBeta */
     <h3>{{hybird_title}}</h3>
+    /*FITRUE_isBeta */
+    /* IFTRUE_isRelase */
     <div style="display: flex;">
       <div class="block">
         <p>①明文加密 =>
@@ -58,7 +60,7 @@
         <textarea ref="hybirdDecryptedCiphertext" rows="5" cols="15"></textarea>
       </div>
     </div>
-    FIDEBUG*/
+    /*FITRUE_isRelase */
   </div>
 </template>
 
@@ -100,7 +102,7 @@
           "-----END RSA PRIVATE KEY-----\n",
         rsaEncryptor: {},
         rsaDecryptor: {},
-        hybird_title: "xxxx AES与RSA 混合加密Demo"
+        hybird_title: "AES与RSA 混合加密Demo"
       };
     },
     methods: {
@@ -163,7 +165,7 @@
         );
       },
       //-------------------------------------------------------------------------
-      /*IFDEBUG
+      /* IFTRUE_isRelase */
       hybirdEncrypt() {
         const iv = this.getRandomAESKey();
         const key = this.getRandomAESKey();
@@ -200,7 +202,7 @@
         const data = encryptInfo.data;
         return this.__aesDecrypt(iv, key, data);
       }
-      FIDEBUG*/
+      /*FITRUE_isRelase */
       //-------------------------------------------------------------------------
     },
     mounted() {
@@ -222,7 +224,9 @@
 <style scoped>
   h3 {
     margin: 40px 0 0;
+    /* IFTRUE_isRelase */
     text-align: left;
+    /*FITRUE_isRelase */
     vertical-align: middle;
   }
 

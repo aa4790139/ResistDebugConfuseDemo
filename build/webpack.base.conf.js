@@ -5,7 +5,8 @@ const config = require('../config')
 const vueLoaderConfig = require('./vue-loader.conf')
 
 console.log("Build: ENV_CONFIG=" + process.env.ENV_CONFIG);
-console.log("Build:" + process.env.ENV_CONFIG === "pro");
+console.log("Build:" + (process.env.ENV_CONFIG === "prod"));
+console.log("Build:" + (process.env.ENV_CONFIG === "test"));
 
 function resolve(dir) {
   return path.join(__dirname, '..', dir)
@@ -25,9 +26,8 @@ const createLintingRule = () => ({
 const conditionalCompiler = {
   loader: 'js-conditional-compile-loader',
   options: {
-    isDebug: false, // optional, this expression is default
-    envTest: false, // any prop name you want, used for /* IFTRUE_evnTest ...js code... FITRUE_evnTest */
-    myFlag: false, // enabled by `npm run build --myflag`
+    isBeta: (process.env.ENV_CONFIG !== "prod") ? true : false,
+    isRelase: (process.env.ENV_CONFIG === "prod") ? true : false
   }
 }
 
