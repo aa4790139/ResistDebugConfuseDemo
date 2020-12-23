@@ -2,6 +2,12 @@
 
 > 防调试混淆demo
 
+## 包含内容
+- AES 加解密Demo
+- RSA 加解密Demo
+- AES + RSA 混合加解密Demo
+- 使用js-conditional-compile-loader进行条件编译, Vue、JS、CSS 都测试通过(插件教程：[https://github.com/hzsrc/js-conditional-compile-loader/blob/master/readme-cn.md](https://github.com/hzsrc/js-conditional-compile-loader/blob/master/readme-cn.md))
+
 ## Build Setup
 
 ``` bash
